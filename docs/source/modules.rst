@@ -6,3 +6,4 @@ mypro
 
    aa
    bb
+   metadata
