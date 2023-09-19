@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sparc_me.core package &mdash; Sparc_me Api v2.2.7 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=82209be3"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="sparc_me package" href="sparc_me.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Sparc_me Api
+              <img src="_static/abi-vrw-rgb.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">sparc_me</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="sparc_me.html">sparc_me package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="sparc_me.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">sparc_me.core package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="sparc_me.html#module-sparc_me">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sparc_me Api</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="modules.html">sparc_me</a></li>
+          <li class="breadcrumb-item"><a href="sparc_me.html">sparc_me package</a></li>
+      <li class="breadcrumb-item active">sparc_me.core package</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/sparc_me.core.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sparc-me-core-package">
+<h1>sparc_me.core package<a class="headerlink" href="#sparc-me-core-package" title="Link to this heading"></a></h1>
+<section id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Link to this heading"></a></h2>
+</section>
+<section id="module-sparc_me.core.dataset">
+<span id="sparc-me-core-dataset-module"></span><h2>sparc_me.core.dataset module<a class="headerlink" href="#module-sparc_me.core.dataset" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sparc_me.core.dataset.</span></span><span class="sig-name descname"><span class="pre">Dataset</span></span><a class="headerlink" href="#sparc_me.core.dataset.Dataset" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.add_derivative_data">
+<span class="sig-name descname"><span class="pre">add_derivative_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sample</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.add_derivative_data" title="Link to this definition"></a></dt>
+<dd><p>Add raw data of a sample to correct SDS location and update relavent metadata files.
+Requires you to already have the folder structure inplace.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_path</strong> (<em>string</em>) – original location of raw data</p></li>
+<li><p><strong>subject</strong> (<em>string</em>) – subject id</p></li>
+<li><p><strong>sample</strong> (<em>string</em>) – sample id</p></li>
+<li><p><strong>sds_parent_dir</strong> (<em>string</em><em>, </em><em>optional</em>) – path to existing sds dataset parent</p></li>
+<li><p><strong>copy</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True, source directory data will not be deleted after copying, defaults to True</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em><em>, </em><em>optional</em>) – if True, any data in the destination folder will be overwritten, defaults to False</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>NotADirectoryError</strong> – if the derivative in sds_parent_dir is not a folder, this wil be raised.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.add_subjects">
+<span class="sig-name descname"><span class="pre">add_subjects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subjects</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.add_subjects" title="Link to this definition"></a></dt>
+<dd><p>Add Subejct list to dataset.
+This function will add subjects and samples to metadata,
+And will move the sample files from origin source path to dataset
+primary subject sample folder.
+It will automatically update manifest and dataset_description metadata files.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>subjects</strong> (<em>list</em>) – Subject dataset</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.add_thumbnail">
+<span class="sig-name descname"><span class="pre">add_thumbnail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.add_thumbnail" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.create_empty_dataset">
+<span class="sig-name descname"><span class="pre">create_empty_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2.0.0'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.create_empty_dataset" title="Link to this definition"></a></dt>
+<dd><p>Create an empty dataset from template via dataset version
+:param version: the dataset version
+:type version: ‘2.0.0’ | ‘1.2.3’</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.delete_data">
+<span class="sig-name descname"><span class="pre">delete_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.delete_data" title="Link to this definition"></a></dt>
+<dd><p>Delete file based on ,the file path in dataset
+It will automatically update mainfest metadata
+TODO: need to connect delete sample and subject, and update subject and sample metadata</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>destination_path</strong> (<em>str</em>) – the file path that you want to delete</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.delete_sample">
+<span class="sig-name descname"><span class="pre">delete_sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'primary'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.delete_sample" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>destination_path</strong> – the sample folder path that you want to delete</p></li>
+<li><p><strong>data_type</strong> – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.delete_samples">
+<span class="sig-name descname"><span class="pre">delete_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination_paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'primary'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.delete_samples" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>destination_paths</strong> (<em>list</em>) – a list of deleting sample folders</p></li>
+<li><p><strong>data_type</strong> (<em>str</em>) – “primary” | “derivative”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.delete_subject">
+<span class="sig-name descname"><span class="pre">delete_subject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'primary'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.delete_subject" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>destination_path</strong> (<em>str</em>) – the subject folder path that you want to delete</p></li>
+<li><p><strong>data_type</strong> – “primary” | “derivative”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.delete_subjects">
+<span class="sig-name descname"><span class="pre">delete_subjects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination_paths</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'primary'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.delete_subjects" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>destination_paths</strong> (<em>str</em><em>[</em><em>]</em>) – the subject folder paths that you want to delete</p></li>
+<li><p><strong>data_type</strong> – “primary” | “derivative”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.get_dataset">
+<span class="sig-name descname"><span class="pre">get_dataset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.get_dataset" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>current dataset dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.get_dataset_path">
+<span class="sig-name descname"><span class="pre">get_dataset_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.get_dataset_path" title="Link to this definition"></a></dt>
+<dd><p>Return the path to the dataset directory
+:return: path to the dataset directory
+:rtype: string</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.get_metadata">
+<span class="sig-name descname"><span class="pre">get_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.get_metadata" title="Link to this definition"></a></dt>
+<dd><p>Get a Metadata object based on the metadata file name
+To edit values for a metadata</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>metadata_file</strong> (<em>string</em>) – one of string of [code_description,
+code_parameters,
+dataset_description,
+manifest,performances,
+resources,samples,
+subjects,submission]</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>give a metadata editor for a specific metadata</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.get_subject">
+<span class="sig-name descname"><span class="pre">get_subject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subject_sds_id</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sparc_me.core.metadata.Subject" title="sparc_me.core.metadata.Subject"><span class="pre">Subject</span></a></span></span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.get_subject" title="Link to this definition"></a></dt>
+<dd><p>Get a subject by subject sds id</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>subject_sds_id</strong> (<em>str</em>) – subject sds id</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Subject</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.list_elements">
+<span class="sig-name descname"><span class="pre">list_elements</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.list_elements" title="Link to this definition"></a></dt>
+<dd><p>List field from a metadata file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metadata_file</strong> (<em>string</em>) – metadata metadata_file</p></li>
+<li><p><strong>axis</strong> (<em>int</em>) – If axis=0, column-based. list all column headers. i.e. the first row.
+If axis=1, row-based. list all row index. i.e. the first column in each row</p></li>
+<li><p><strong>version</strong> (<em>string</em>) – reference template version</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a list of fields</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.list_metadata_files">
+<span class="sig-name descname"><span class="pre">list_metadata_files</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.list_metadata_files" title="Link to this definition"></a></dt>
+<dd><p>list all metadata_files based on the metadata files in the template dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>version</strong> (<em>string</em>) – reference template version</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>all metadata metadata_files</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.load_dataset">
+<span class="sig-name descname"><span class="pre">load_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">from_template</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.load_dataset" title="Link to this definition"></a></dt>
+<dd><p>Load the input dataset into a dictionary</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset_path</strong> (<em>string</em>) – path to the dataset</p></li>
+<li><p><strong>from_template</strong> (<em>bool</em>) – whether to load the dataset from a SPARC template</p></li>
+<li><p><strong>version</strong> (<em>string</em>) – dataset version</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>loaded dataset</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.load_from_template">
+<span class="sig-name descname"><span class="pre">load_from_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.load_from_template" title="Link to this definition"></a></dt>
+<dd><p>Load dataset from SPARC template</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>version</strong> (<em>string</em>) – template version</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>loaded dataset</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.load_metadata">
+<span class="sig-name descname"><span class="pre">load_metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.load_metadata" title="Link to this definition"></a></dt>
+<dd><p>Load &amp; update a single metadata</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>string</em>) – path to the metadata file</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>metadata</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Pandas.DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.remove_thumbnail">
+<span class="sig-name descname"><span class="pre">remove_thumbnail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">destination_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.remove_thumbnail" title="Link to this definition"></a></dt>
+<dd><p>Delete a thumbnail from dataset
+Will automatically update manifest metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>destination_path</strong> (<em>str</em>) – The thumbnail path in dataset that you want to delete.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">remove_empty</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.save" title="Link to this definition"></a></dt>
+<dd><p>Save dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>save_dir</strong> (<em>string</em>) – path to the dest dir</p></li>
+<li><p><strong>remove_empty</strong> (<em>bool</em>) – (optional) If True, remove rows which do not have values in the “Value” field</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.set_dataset_path">
+<span class="sig-name descname"><span class="pre">set_dataset_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.set_dataset_path" title="Link to this definition"></a></dt>
+<dd><p>Set the path to the dataset</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>string</em>) – path to the dataset directory</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.set_path">
+<span class="sig-name descname"><span class="pre">set_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.set_path" title="Link to this definition"></a></dt>
+<dd><p>Set the dataset path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>string</em>) – path to the dataset directory</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.dataset.Dataset.update_by_json">
+<span class="sig-name descname"><span class="pre">update_by_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">json_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.dataset.Dataset.update_by_json" title="Link to this definition"></a></dt>
+<dd><p>Given json file, update metadata file
+:param metadata_file: metadata metadata_file/filename
+:type metadata_file: string
+:param json_file: path to metadata file in json
+:type json_file: string
+:return:
+:rtype:</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sparc_me.core.metadata">
+<span id="sparc-me-core-metadata-module"></span><h2>sparc_me.core.metadata module<a class="headerlink" href="#module-sparc_me.core.metadata" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Metadata">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sparc_me.core.metadata.</span></span><span class="sig-name descname"><span class="pre">Metadata</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Metadata" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Metadata.add_values">
+<span class="sig-name descname"><span class="pre">add_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Metadata.add_values" title="Link to this definition"></a></dt>
+<dd><p>Append values to the last value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<em>str</em>) – a col/row name in Excel</p></li>
+<li><p><strong>values</strong> (<em>list</em><em> | </em><em>str</em><em> | </em><em>int</em><em> | </em><em>bool</em>) – element values from that metadata</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Metadata.clear_values">
+<span class="sig-name descname"><span class="pre">clear_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Metadata.clear_values" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> (<em>str</em>) – Unique row/col name in Excel. (Ex: if subjects is metadata_file, a row name can be a unique subjet id)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Metadata.get_values">
+<span class="sig-name descname"><span class="pre">get_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Metadata.get_values" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> – a col/row name in Excel</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Metadata.remove_row">
+<span class="sig-name descname"><span class="pre">remove_row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Metadata.remove_row" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Metadata.remove_values">
+<span class="sig-name descname"><span class="pre">remove_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Metadata.remove_values" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<em>list</em><em> | </em><em>str</em><em> | </em><em>int</em><em> | </em><em>bool</em>) – field value</p></li>
+<li><p><strong>element</strong> (<em>str</em>) – Unique row/col name in Excel.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Metadata.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Metadata.save" title="Link to this definition"></a></dt>
+<dd><p>Save the metadata file to dataset dir</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<em>str</em>) – the dataset root path (Optional)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Metadata.set_col_values">
+<span class="sig-name descname"><span class="pre">set_col_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">col_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Metadata.set_col_values" title="Link to this definition"></a></dt>
+<dd><p>Set col fields/values by col index
+:param values: field values
+:type values: list | str | int | bool
+:param col_index: the header index
+:type col_index: int
+:param append: insert values into last col or row
+:type append: bool
+:return:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Metadata.set_row_values">
+<span class="sig-name descname"><span class="pre">set_row_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">col_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Value'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Metadata.set_row_values" title="Link to this definition"></a></dt>
+<dd><p>Set row fields/values by row idx/name and column name (the header)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>row_index</strong> (<em>int</em>) – row index in Excel. Excel index starts from 1 where index 1 is the header row. so actual data index starts from 2</p></li>
+<li><p><strong>col_name</strong> (<em>str</em>) – column name. the header is the first row</p></li>
+<li><p><strong>values</strong> (<em>list</em><em> | </em><em>str</em><em> | </em><em>int</em><em> | </em><em>bool</em>) – field values</p></li>
+<li><p><strong>append</strong> (<em>bool</em>) – insert values into last col or row</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>updated dataset</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Metadata.set_values">
+<span class="sig-name descname"><span class="pre">set_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Metadata.set_values" title="Link to this definition"></a></dt>
+<dd><p>Override the values in that element</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<em>str</em>) – a col/row name in Excel</p></li>
+<li><p><strong>values</strong> (<em>list</em><em> | </em><em>str</em><em> | </em><em>int</em><em> | </em><em>bool</em>) – element values from that metadata</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Metadata.validate_input">
+<span class="sig-name descname"><span class="pre">validate_input</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Metadata.validate_input" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> – row/col name in excel</p></li>
+<li><p><strong>elements</strong> – dataset metadata elements</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Sample">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sparc_me.core.metadata.</span></span><span class="sig-name descname"><span class="pre">Sample</span></span><a class="headerlink" href="#sparc_me.core.metadata.Sample" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Sample.add_path">
+<span class="sig-name descname"><span class="pre">add_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Sample.add_path" title="Link to this definition"></a></dt>
+<dd><p>Add sample source path to sample object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source_path</strong> (<em>str</em><em> | </em><em>list</em>) – sample folder source path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Sample.count">
+<span class="sig-name descname"><span class="pre">count</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sparc_me.core.metadata.Sample.count" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Sample.get_sample_id">
+<span class="sig-name descname"><span class="pre">get_sample_id</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Sample.get_sample_id" title="Link to this definition"></a></dt>
+<dd><p>Get sample id
+:return: sample id</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Sample.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Sample.move" title="Link to this definition"></a></dt>
+<dd><p>Move sample files from source dir to dataset primary dir</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Sample.remove_values">
+<span class="sig-name descname"><span class="pre">remove_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Sample.remove_values" title="Link to this definition"></a></dt>
+<dd><p>Future function</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Sample.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Sample.save" title="Link to this definition"></a></dt>
+<dd><p>Save sample metadata file</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Sample.set_path">
+<span class="sig-name descname"><span class="pre">set_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Sample.set_path" title="Link to this definition"></a></dt>
+<dd><p>Add sample source path to sample object
+Override the Previous path</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>source_path</strong> (<em>str</em><em> | </em><em>list</em>) – sample folder source path</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Sample.set_subject_id">
+<span class="sig-name descname"><span class="pre">set_subject_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sub_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Sample.set_subject_id" title="Link to this definition"></a></dt>
+<dd><p>set subject id to sample object
+:param sub_id: a subject id
+:type sub_id: str</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Sample.set_value">
+<span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Sample.set_value" title="Link to this definition"></a></dt>
+<dd><p>Set value for one element for a sample</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<em>str</em>) – element in sample metadata file</p></li>
+<li><p><strong>value</strong> (<em>str</em><em>|</em><em>int</em>) – the values for that element</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Sample.set_values">
+<span class="sig-name descname"><span class="pre">set_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Sample.set_values" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>metadata</strong> (<em>dict</em>) – key : value dict (element:value)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Subject">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sparc_me.core.metadata.</span></span><span class="sig-name descname"><span class="pre">Subject</span></span><a class="headerlink" href="#sparc_me.core.metadata.Subject" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Subject.add_samples">
+<span class="sig-name descname"><span class="pre">add_samples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Subject.add_samples" title="Link to this definition"></a></dt>
+<dd><p>Add samples into subject object</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>samples</strong> (<em>list</em>) – a samples list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Subject.count">
+<span class="sig-name descname"><span class="pre">count</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#sparc_me.core.metadata.Subject.count" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Subject.get_sample">
+<span class="sig-name descname"><span class="pre">get_sample</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_sds_id</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#sparc_me.core.metadata.Sample" title="sparc_me.core.metadata.Sample"><span class="pre">Sample</span></a></span></span><a class="headerlink" href="#sparc_me.core.metadata.Subject.get_sample" title="Link to this definition"></a></dt>
+<dd><p>Provide the sample sds id to query a sample for edit</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sample_sds_id</strong> – the sample id in sds</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sample</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Subject.move">
+<span class="sig-name descname"><span class="pre">move</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Subject.move" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Subject.remove_values">
+<span class="sig-name descname"><span class="pre">remove_values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Subject.remove_values" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Subject.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Subject.save" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Subject.set_value">
+<span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Subject.set_value" title="Link to this definition"></a></dt>
+<dd><p>Set value for one element for a subject</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<em>str</em>) – element in sample metadata file</p></li>
+<li><p><strong>value</strong> (<em>str</em><em>|</em><em>int</em>) – the values for that element</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.metadata.Subject.set_values">
+<span class="sig-name descname"><span class="pre">set_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.metadata.Subject.set_values" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>metadata</strong> (<em>dict</em>) – key : value dict (element:value)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sparc_me.core.schema">
+<span id="sparc-me-core-schema-module"></span><h2>sparc_me.core.schema module<a class="headerlink" href="#module-sparc_me.core.schema" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Schema">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sparc_me.core.schema.</span></span><span class="sig-name descname"><span class="pre">Schema</span></span><a class="headerlink" href="#sparc_me.core.schema.Schema" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Schema.add_property">
+<span class="sig-name descname"><span class="pre">add_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">property_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">property</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.Schema.add_property" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Schema.convert_schema_excel_to_json">
+<span class="sig-name descname"><span class="pre">convert_schema_excel_to_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dest_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.Schema.convert_schema_excel_to_json" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>source_path</strong> (<em>str</em>) – The Excel schema file path</p></li>
+<li><p><strong>dest_path</strong> (<em>str</em>) – The converted Json file store path</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Schema.generate_from_template">
+<span class="sig-name descname"><span class="pre">generate_from_template</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.Schema.generate_from_template" title="Link to this definition"></a></dt>
+<dd><p>Generate schema from template
+(the element_description.xlsx file in the template folder)
+:param file: path to the template
+:type file: string
+:param save_dir: directory to save the schema files
+:type save_dir: string
+:return:
+:rtype:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Schema.generate_validate_data">
+<span class="sig-name descname"><span class="pre">generate_validate_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.Schema.generate_validate_data" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Schema.get_default_schema">
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_default_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.Schema.get_default_schema" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Schema.get_schema">
+<span class="sig-name descname"><span class="pre">get_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2.0.0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">print_schema</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">required_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.Schema.get_schema" title="Link to this definition"></a></dt>
+<dd><p>get a schema via metadata_file/metadate file name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>metadata_file</strong> (<em>str</em>) – the metadata file name</p></li>
+<li><p><strong>version</strong> (<em>str</em>) – “2.0.0”|”1.2.3”</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Schema.load_data">
+<span class="sig-name descname"><span class="pre">load_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.Schema.load_data" title="Link to this definition"></a></dt>
+<dd><p>Load in a metadata
+:param path: path to the metadata file
+:type path: string
+:return: data instance
+:rtype: dict or list</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Schema.save">
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">save_dir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_file</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.Schema.save" title="Link to this definition"></a></dt>
+<dd><p>Save schema
+:param save_dir: path to the destination directory
+:type save_dir: string
+:param schema: metadata schema
+:type schema: dict
+:param metadata_file: metadata metadata_file (filename)
+:type metadata_file: string
+:return:
+:rtype:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Schema.set_schema">
+<span class="sig-name descname"><span class="pre">set_schema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">schema</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.Schema.set_schema" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Validator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sparc_me.core.schema.</span></span><span class="sig-name descname"><span class="pre">Validator</span></span><a class="headerlink" href="#sparc_me.core.schema.Validator" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Validator.validate">
+<span class="sig-name descname"><span class="pre">validate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.Validator.validate" title="Link to this definition"></a></dt>
+<dd><p>Validate data instance
+:param data: Target data
+:type data: dict or list
+:param metadata_file: metadata filename
+:type metadata_file: string
+:param version: dataset version
+:type version: string
+:return:
+:rtype:</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.schema.Validator.validate_dataset">
+<span class="sig-name descname"><span class="pre">validate_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.Validator.validate_dataset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sparc_me.core.schema.convert_version_format">
+<span class="sig-prename descclassname"><span class="pre">sparc_me.core.schema.</span></span><span class="sig-name descname"><span class="pre">convert_version_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">version</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.schema.convert_version_format" title="Link to this definition"></a></dt>
+<dd><p>Convert version format
+:param version: dataset/template version
+:type version: string
+:return: version in the converted format
+:rtype:</p>
+</dd></dl>
+
+</section>
+<section id="module-sparc_me.core.api_tools">
+<span id="sparc-me-core-api-tools-module"></span><h2>sparc_me.core.api_tools module<a class="headerlink" href="#module-sparc_me.core.api_tools" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sparc_me.core.api_tools.</span></span><span class="sig-name descname"><span class="pre">Dataset_Api</span></span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.download_dataset">
+<span class="sig-name descname"><span class="pre">download_dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.download_dataset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.get_UBERONs_From_Dataset">
+<span class="sig-name descname"><span class="pre">get_UBERONs_From_Dataset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasetId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.get_UBERONs_From_Dataset" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.get_all_datasets_all_versions">
+<span class="sig-name descname"><span class="pre">get_all_datasets_all_versions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.get_all_datasets_all_versions" title="Link to this definition"></a></dt>
+<dd><p>Get all datasets with all versions
+It may cost a few minutes to get the whole data,
+Because some dataset have a lot of versions, e.g, 20,
+And every time when the version number getter than 1,
+it will request server for getting new data, so it waste a lot of time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datasets</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.get_all_datasets_latest_version_pensieve">
+<span class="sig-name descname"><span class="pre">get_all_datasets_latest_version_pensieve</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.get_all_datasets_latest_version_pensieve" title="Link to this definition"></a></dt>
+<dd><p>Get all datasets with latest version</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>datasets | []</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.get_all_files_path">
+<span class="sig-name descname"><span class="pre">get_all_files_path</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version_id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.get_all_files_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.get_dataset_latest_version_number">
+<span class="sig-name descname"><span class="pre">get_dataset_latest_version_number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasetId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.get_dataset_latest_version_number" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.get_dataset_latest_version_pensieve">
+<span class="sig-name descname"><span class="pre">get_dataset_latest_version_pensieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasetId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.get_dataset_latest_version_pensieve" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>datasetId</strong> (<em>str</em><em>|</em><em>int</em>) – the dataset id from SPARC</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.get_dataset_protocolsio_link">
+<span class="sig-name descname"><span class="pre">get_dataset_protocolsio_link</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasetId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.get_dataset_protocolsio_link" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.get_dataset_versions_pensieve">
+<span class="sig-name descname"><span class="pre">get_dataset_versions_pensieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasetId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.get_dataset_versions_pensieve" title="Link to this definition"></a></dt>
+<dd><p>get one dataset all versions</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>datasetId</strong> (<em>str</em><em>|</em><em>int</em>) – the dataset id from SPARC</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>versions</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.get_metadata_pensieve">
+<span class="sig-name descname"><span class="pre">get_metadata_pensieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasetId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">versionId</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.get_metadata_pensieve" title="Link to this definition"></a></dt>
+<dd><p>Get a metadata from the specific version</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datasetId</strong> (<em>str</em><em> | </em><em>int</em>) – </p></li>
+<li><p><strong>versionId</strong> (<em>str</em><em> | </em><em>int</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>metadata json format</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.get_protocolsio_text">
+<span class="sig-name descname"><span class="pre">get_protocolsio_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasetId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dir</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.get_protocolsio_text" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.api_tools.Dataset_Api.get_xlsx_csv_file_pennsieve">
+<span class="sig-name descname"><span class="pre">get_xlsx_csv_file_pennsieve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datasetId</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savepath</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.api_tools.Dataset_Api.get_xlsx_csv_file_pennsieve" title="Link to this definition"></a></dt>
+<dd><p>store excel file locally
+:param datasetId: dataset id from SPARC
+:param filepath: dataset version from SPARC
+:param savepath: Path for save dataset</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-sparc_me.core.utils">
+<span id="sparc-me-core-utils-module"></span><h2>sparc_me.core.utils module<a class="headerlink" href="#module-sparc_me.core.utils" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="sparc_me.core.utils.CaseInsensitiveDict">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">sparc_me.core.utils.</span></span><span class="sig-name descname"><span class="pre">CaseInsensitiveDict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.utils.CaseInsensitiveDict" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="sparc_me.core.utils.CaseInsensitiveDict.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pprint</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.utils.CaseInsensitiveDict.get" title="Link to this definition"></a></dt>
+<dd><p>Return the value for key if key is in the dictionary, else default.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sparc_me.core.utils.check_row_exist">
+<span class="sig-prename descclassname"><span class="pre">sparc_me.core.utils.</span></span><span class="sig-name descname"><span class="pre">check_row_exist</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique_column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unique_value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.utils.check_row_exist" title="Link to this definition"></a></dt>
+<dd><p>Check if a row exist with given unique value</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<em>Pandas DataFrame</em>) – metadata dataframe that must be checked</p></li>
+<li><p><strong>unique_value</strong> (<em>string</em>) – value that can be used to uniquely identifies a row</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>row index of the row identified with the unique value, or -1 if there is no row corresponding to the unique value</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>ValueError</strong> – if more than one row can be identified with given unique value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sparc_me.core.utils.find_col_element">
+<span class="sig-prename descclassname"><span class="pre">sparc_me.core.utils.</span></span><span class="sig-name descname"><span class="pre">find_col_element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metadata</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.utils.find_col_element" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sparc_me.core.utils.get_sub_folder_paths_in_folder">
+<span class="sig-prename descclassname"><span class="pre">sparc_me.core.utils.</span></span><span class="sig-name descname"><span class="pre">get_sub_folder_paths_in_folder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">folder_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.utils.get_sub_folder_paths_in_folder" title="Link to this definition"></a></dt>
+<dd><p>get sub folder paths in a folder
+:param folder_path: the parent folder path
+:type folder_path: str
+:return: list</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sparc_me.core.utils.remove_spaces_and_lower">
+<span class="sig-prename descclassname"><span class="pre">sparc_me.core.utils.</span></span><span class="sig-name descname"><span class="pre">remove_spaces_and_lower</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.utils.remove_spaces_and_lower" title="Link to this definition"></a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>s</strong> (<em>str</em>) – the str need to deal with</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>a str with lower case and without space, and _</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sparc_me.core.utils.validate_metadata_file">
+<span class="sig-prename descclassname"><span class="pre">sparc_me.core.utils.</span></span><span class="sig-name descname"><span class="pre">validate_metadata_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metadata_file</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2.0.0'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.utils.validate_metadata_file" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="sparc_me.core.utils.validate_sub_sam_name">
+<span class="sig-prename descclassname"><span class="pre">sparc_me.core.utils.</span></span><span class="sig-name descname"><span class="pre">validate_sub_sam_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">validate_str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">validate_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#sparc_me.core.utils.validate_sub_sam_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sparc_me.html" class="btn btn-neutral float-left" title="sparc_me package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Linkun Gao, Chinchien Lin, Jiali Xu, Thiranja Prasad Babarenda Gamage.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
