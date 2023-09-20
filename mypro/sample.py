@@ -1,21 +1,5 @@
 """Sample module documentation"""
 
-class Db(object):
-    """
-    Bb类的注释
-    """
-
-    @staticmethod
-    def DD_api(x, y):
-        """
-        求商
-        >>> Bb.bb_api(2, 4)
-        0.5
-        >>> Bb.bb_api(4, 2)
-        2.0
-        """
-        return x / y
-
 class Sample(object):
 
     # count = 0
