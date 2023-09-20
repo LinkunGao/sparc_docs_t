@@ -18,11 +18,11 @@ class Db(object):
 
 class Sample(object):
 
-    count = 0
-    _dataset_path: Path = Path('./')
-    _metadata: Metadata = None
-    _manifest_metadata: Metadata = None
-    _previous_sub_id = ""
+    # count = 0
+    # _dataset_path: Path = Path('./')
+    # _metadata: Metadata = None
+    # _manifest_metadata: Metadata = None
+    # _previous_sub_id = ""
 
 
     def __init__(self):
