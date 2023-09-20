@@ -631,8 +631,9 @@ class Dataset(object):
         return metadata
 
     def _generate_file_from_template(self, save_path, metadata_file, data=pd.DataFrame(), keep_style=False):
-        """Generate file from a template and populate with data if givn
-          #TODO: will delete later
+        """
+          Generate file from a template and populate with data if givn
+          TODO: will delete later
 
         :param save_path: destination to save the generated file
         :type save_path: string
