@@ -656,11 +656,7 @@ class Dataset(object):
     def add_subjects(self, subjects):
 
         """
-        Add Subejct list to dataset.
-        This function will add subjects and samples to metadata,
-        And will move the sample files from origin source path to dataset
-        primary subject sample folder.
-        It will automatically update manifest and dataset_description metadata files.
+        Add Subejct list to dataset. This function will add subjects and samples to metadata,And will move the sample files from origin source path to dataset.primary subject sample folder. It will automatically update manifest and dataset_description metadata files.
 
         :param subjects: Subject dataset
         :type subjects: list
