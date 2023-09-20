@@ -21,140 +21,140 @@ class Dataset(object):
         self._subject_id_field = None
         self._sample_id_field = None
         self._metadata: Dict[str, Metadata] = {}
-    #
-    # def set_path(self, path):
-    #     """
-    #     Set the dataset path
-    #
-    #     :param path: path to the dataset directory
-    #     :type path: string
-    #     """
-    #     self.set_dataset_path(path)
-    #
-    # def set_dataset_path(self, path):
-    #     """
-    #     Set the path to the dataset
-    #
-    #     :param path: path to the dataset directory
-    #     :type path: string
-    #     """
-    #     self._dataset_path = Path(path)
-    #     Sample._dataset_path = self._dataset_path
-    #     Subject._dataset_path = self._dataset_path
-    #
-    # def get_dataset_path(self):
-    #     """
-    #     Return the path to the dataset directory
-    #     :return: path to the dataset directory
-    #     :rtype: string
-    #     """
-    #     return str(self._dataset_path)
-    #
-    # def get_dataset(self):
-    #     """
-    #     :return: current dataset dict
-    #     """
-    #     return self._dataset
-    #
-    # def _get_template_dir(self, version):
-    #     """
-    #     Get template directory path
-    #
-    #     :return: path to the template dataset
-    #     :rtype: Path
-    #     """
-    #     version = "version_" + version
-    #     template_dir = self._resources_path / "templates" / version / "DatasetTemplate"
-    #
-    #     return template_dir
-    #
-    # def _set_template_version(self, version):
-    #     """
-    #     Choose a template version
-    #
-    #     :param version: template version
-    #     :type version: string
-    #     """
-    #     version = self._convert_version_format(version)
-    #     self._template_version = version
-    #     self._set_version_specific_variables(version)
-    #
-    # def _set_version_specific_variables(self, version):
-    #     """Set version specific variables
-    #
-    #     :param version: SDS version to use Ex: 2_0_0
-    #     :type version: string
-    #     :raises ValueError: if the given version is not an acceptable SDS version
-    #     """
-    #     if version == "2_0_0":
-    #         self._subject_id_field = "subject id"
-    #         self._sample_id_field = "sample id"
-    #     elif version == "1_2_3":
-    #         self._subject_id_field = "subject_id"
-    #         self._sample_id_field = "sample_id"
-    #     else:
-    #         error_msg = f"Unsupported version {version}"
-    #         raise ValueError(error_msg)
-    #
-    # def _load(self, dir_path):
-    #     """
-    #     Load the input dataset into a dictionary
-    #
-    #     :param dir_path: path to the dataset dictionary
-    #     :type dir_path: string
-    #     :return: loaded dataset
-    #     :rtype: dict
-    #     """
-    #     dataset = dict()
-    #
-    #     dir_path = Path(dir_path)
-    #     for path in dir_path.iterdir():
-    #         if path.suffix in self._metadata_extensions:
-    #             try:
-    #                 metadata = pd.read_excel(path)
-    #             except XLRDError:
-    #                 metadata = pd.read_excel(path, engine='openpyxl')
-    #
-    #             metadata = metadata.dropna(how="all")
-    #             metadata = metadata.loc[:, ~metadata.columns.str.contains('^Unnamed')]
-    #
-    #             key = path.stem
-    #             value = {
-    #                 "path": path,
-    #                 "metadata": metadata
-    #             }
-    #         else:
-    #             key = path.name
-    #             value = path
-    #
-    #         dataset[key] = value
-    #
-    #     return dataset
-    #
-    # def create_empty_dataset(self, version='2.0.0'):
-    #     """
-    #     Create an empty dataset from template via dataset version
-    #     :param version: the dataset version
-    #     :type version: '2.0.0' | '1.2.3'
-    #     """
-    #     self.load_from_template(version=version)
-    #
-    # def load_from_template(self, version):
-    #     """
-    #     Load dataset from SPARC template
-    #
-    #     :param version: template version
-    #     :type version: string
-    #     :return: loaded dataset
-    #     :rtype: dict
-    #     """
-    #     self._set_version(version)
-    #     # self._dataset_path = self._get_template_dir(self._version)
-    #     template_dataset_path = self._get_template_dir(self._version)
-    #     self._dataset = self._load(str(template_dataset_path))
-    #
-    #     self._generate_metadata()
-    #
+
+    def set_path(self, path):
+        """
+        Set the dataset path
+
+        :param path: path to the dataset directory
+        :type path: string
+        """
+        self.set_dataset_path(path)
+
+    def set_dataset_path(self, path):
+        """
+        Set the path to the dataset
+
+        :param path: path to the dataset directory
+        :type path: string
+        """
+        self._dataset_path = Path(path)
+        Sample._dataset_path = self._dataset_path
+        Subject._dataset_path = self._dataset_path
+
+    def get_dataset_path(self):
+        """
+        Return the path to the dataset directory
+        :return: path to the dataset directory
+        :rtype: string
+        """
+        return str(self._dataset_path)
+
+    def get_dataset(self):
+        """
+        :return: current dataset dict
+        """
+        return self._dataset
+
+    def _get_template_dir(self, version):
+        """
+        Get template directory path
+
+        :return: path to the template dataset
+        :rtype: Path
+        """
+        version = "version_" + version
+        template_dir = self._resources_path / "templates" / version / "DatasetTemplate"
+
+        return template_dir
+
+    def _set_template_version(self, version):
+        """
+        Choose a template version
+
+        :param version: template version
+        :type version: string
+        """
+        version = self._convert_version_format(version)
+        self._template_version = version
+        self._set_version_specific_variables(version)
+
+    def _set_version_specific_variables(self, version):
+        """Set version specific variables
+
+        :param version: SDS version to use Ex: 2_0_0
+        :type version: string
+        :raises ValueError: if the given version is not an acceptable SDS version
+        """
+        if version == "2_0_0":
+            self._subject_id_field = "subject id"
+            self._sample_id_field = "sample id"
+        elif version == "1_2_3":
+            self._subject_id_field = "subject_id"
+            self._sample_id_field = "sample_id"
+        else:
+            error_msg = f"Unsupported version {version}"
+            raise ValueError(error_msg)
+
+    def _load(self, dir_path):
+        """
+        Load the input dataset into a dictionary
+
+        :param dir_path: path to the dataset dictionary
+        :type dir_path: string
+        :return: loaded dataset
+        :rtype: dict
+        """
+        dataset = dict()
+
+        dir_path = Path(dir_path)
+        for path in dir_path.iterdir():
+            if path.suffix in self._metadata_extensions:
+                try:
+                    metadata = pd.read_excel(path)
+                except XLRDError:
+                    metadata = pd.read_excel(path, engine='openpyxl')
+
+                metadata = metadata.dropna(how="all")
+                metadata = metadata.loc[:, ~metadata.columns.str.contains('^Unnamed')]
+
+                key = path.stem
+                value = {
+                    "path": path,
+                    "metadata": metadata
+                }
+            else:
+                key = path.name
+                value = path
+
+            dataset[key] = value
+
+        return dataset
+
+    def create_empty_dataset(self, version='2.0.0'):
+        """
+        Create an empty dataset from template via dataset version
+        :param version: the dataset version
+        :type version: '2.0.0' | '1.2.3'
+        """
+        self.load_from_template(version=version)
+
+    def load_from_template(self, version):
+        """
+        Load dataset from SPARC template
+
+        :param version: template version
+        :type version: string
+        :return: loaded dataset
+        :rtype: dict
+        """
+        self._set_version(version)
+        # self._dataset_path = self._get_template_dir(self._version)
+        template_dataset_path = self._get_template_dir(self._version)
+        self._dataset = self._load(str(template_dataset_path))
+
+        self._generate_metadata()
+
     # def _convert_version_format(self, version):
     #     """
     #     Convert version format
