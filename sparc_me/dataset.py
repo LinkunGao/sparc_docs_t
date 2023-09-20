@@ -155,178 +155,178 @@ class Dataset(object):
 
         self._generate_metadata()
 
-    # def _convert_version_format(self, version):
-    #     """
-    #     Convert version format
-    #     :param version: dataset/template version
-    #     :type version: string
-    #     :return: version in the converted format
-    #     :rtype:
-    #     """
-    #     version = version.replace(".", "_")
-    #
-    #     if "_" not in version:
-    #         version = version + "_0_0"
-    #
-    #     return version
-    #
-    # def _set_version(self, version):
-    #     """
-    #     Set dataset version version
-    #
-    #     :param version: dataset version
-    #     :type version: string
-    #     """
-    #     version = self._convert_version_format(version)
-    #
-    #     self._version = version
-    #     self._set_version_specific_variables(version)
-    #
-    # def _load_template(self, version):
-    #     """
-    #     Load template
-    #
-    #     :param version: template version
-    #     :type version: string
-    #     :return: loaded template
-    #     :rtype: dict
-    #     """
-    #
-    #     version = self._convert_version_format(version)
-    #     self._set_template_version(version)
-    #     self._template_dir = self._get_template_dir(self._template_version)
-    #     self._template = self._load(str(self._template_dir))
-    #
-    #     return self._template
-    #
-    # def _save_template(self, save_dir, version=None):
-    #     """
-    #     Save the template directory locally
-    #     TODO: will delete later
-    #
-    #     :param save_dir: path to the output folder
-    #     :type save_dir: string
-    #     :param version: template version
-    #     :type version: string
-    #     """
-    #     if version:
-    #         version = self._convert_version_format(version)
-    #         template_dir = self._get_template_dir(version)
-    #     elif not version and self._template_version:
-    #         template_dir = self._get_template_dir(self._template_version)
-    #     else:
-    #         raise ValueError("Template path not found.")
-    #
-    #     copy_tree(str(template_dir), str(save_dir))
-    #
-    # def load_dataset(self, dataset_path=None, from_template=False, version=None):
-    #     """
-    #     Load the input dataset into a dictionary
-    #
-    #     :param dataset_path: path to the dataset
-    #     :type dataset_path: string
-    #     :param from_template: whether to load the dataset from a SPARC template
-    #     :type from_template: bool
-    #     :param version: dataset version
-    #     :type version: string
-    #     :return: loaded dataset
-    #     :rtype: dict
-    #     """
-    #     if version:
-    #         self._set_version(version)
-    #
-    #     if not self._dataset_path:
-    #         self._dataset_path = Path(dataset_path)
-    #
-    #     if from_template:
-    #         self._dataset = self.load_from_template(version=version)
-    #     else:
-    #         self._dataset = self._load(dataset_path)
-    #         self._generate_metadata()
-    #
-    #     return self._dataset
-    #
-    # def save(self, save_dir="", remove_empty=False, keep_style=False):
-    #     """
-    #     Save dataset
-    #
-    #     :param save_dir: path to the dest dir
-    #     :type save_dir: string
-    #     :param remove_empty: (optional) If True, remove rows which do not have values in the "Value" field
-    #     :type remove_empty: bool
-    #     """
-    #     if not self._dataset:
-    #         msg = "Dataset not defined. Please load the dataset or the template dataset in advance."
-    #         raise ValueError(msg)
-    #     if save_dir == "":
-    #         save_dir = self._dataset_path
-    #     save_dir = Path(save_dir)
-    #     save_dir.mkdir(parents=True, exist_ok=True)
-    #
-    #     for key, value in self._dataset.items():
-    #         if isinstance(value, dict):
-    #             file_path = Path(value.get("path"))
-    #             filename = file_path.name
-    #             data = value.get("metadata")
-    #
-    #             if remove_empty:
-    #                 data = self._filter(data, filename)
-    #
-    #             if isinstance(data, pd.DataFrame):
-    #                 self._set_version(self._version)
-    #                 template_dir = self._get_template_dir(self._version)
-    #
-    #                 if keep_style:
-    #                     sf = StyleFrame.read_excel_as_template(str(template_dir / filename), data)
-    #                     writer = StyleFrame.ExcelWriter(Path.joinpath(save_dir, filename))
-    #                     sf.to_excel(writer)
-    #                     writer.save()
-    #                 else:
-    #                     data.to_excel(Path.joinpath(save_dir, filename), index=False)
-    #
-    #         elif Path(value).is_dir():
-    #             dir_name = Path(value).name
-    #             dir_path = Path.joinpath(save_dir, dir_name)
-    #             copy_tree(str(value), str(dir_path), update=1)
-    #
-    #         elif Path(value).is_file():
-    #             filename = Path(value).name
-    #             file_path = Path.joinpath(save_dir, filename)
-    #             try:
-    #                 shutil.copyfile(value, file_path)
-    #             except shutil.SameFileError:
-    #                 # overwrite file by copy, remove then rename
-    #                 file_path_tmp = str(file_path) + "_tmp"
-    #                 shutil.copyfile(value, file_path_tmp)
-    #                 os.remove(file_path)
-    #                 os.rename(file_path_tmp, file_path)
-    #
-    #     for gitkeep_path in save_dir.rglob('.gitkeep'):
-    #         gitkeep_path.unlink()
-    #
-    # def load_metadata(self, path):
-    #     """
-    #     Load & update a single metadata
-    #
-    #     :param path: path to the metadata file
-    #     :type path: string
-    #     :return: metadata
-    #     :rtype: Pandas.DataFrame
-    #     """
-    #     path = Path(path)
-    #     try:
-    #         metadata = pd.read_excel(path)
-    #     except XLRDError:
-    #         metadata = pd.read_excel(path, engine='openpyxl')
-    #
-    #     filename = path.stem
-    #     self._dataset[filename] = {
-    #         "path": path,
-    #         "metadata": metadata
-    #     }
-    #
-    #     return metadata
-    #
+    def _convert_version_format(self, version):
+        """
+        Convert version format
+        :param version: dataset/template version
+        :type version: string
+        :return: version in the converted format
+        :rtype:
+        """
+        version = version.replace(".", "_")
+
+        if "_" not in version:
+            version = version + "_0_0"
+
+        return version
+
+    def _set_version(self, version):
+        """
+        Set dataset version version
+
+        :param version: dataset version
+        :type version: string
+        """
+        version = self._convert_version_format(version)
+
+        self._version = version
+        self._set_version_specific_variables(version)
+
+    def _load_template(self, version):
+        """
+        Load template
+
+        :param version: template version
+        :type version: string
+        :return: loaded template
+        :rtype: dict
+        """
+
+        version = self._convert_version_format(version)
+        self._set_template_version(version)
+        self._template_dir = self._get_template_dir(self._template_version)
+        self._template = self._load(str(self._template_dir))
+
+        return self._template
+
+    def _save_template(self, save_dir, version=None):
+        """
+        Save the template directory locally
+        TODO: will delete later
+
+        :param save_dir: path to the output folder
+        :type save_dir: string
+        :param version: template version
+        :type version: string
+        """
+        if version:
+            version = self._convert_version_format(version)
+            template_dir = self._get_template_dir(version)
+        elif not version and self._template_version:
+            template_dir = self._get_template_dir(self._template_version)
+        else:
+            raise ValueError("Template path not found.")
+
+        copy_tree(str(template_dir), str(save_dir))
+
+    def load_dataset(self, dataset_path=None, from_template=False, version=None):
+        """
+        Load the input dataset into a dictionary
+
+        :param dataset_path: path to the dataset
+        :type dataset_path: string
+        :param from_template: whether to load the dataset from a SPARC template
+        :type from_template: bool
+        :param version: dataset version
+        :type version: string
+        :return: loaded dataset
+        :rtype: dict
+        """
+        if version:
+            self._set_version(version)
+
+        if not self._dataset_path:
+            self._dataset_path = Path(dataset_path)
+
+        if from_template:
+            self._dataset = self.load_from_template(version=version)
+        else:
+            self._dataset = self._load(dataset_path)
+            self._generate_metadata()
+
+        return self._dataset
+
+    def save(self, save_dir="", remove_empty=False, keep_style=False):
+        """
+        Save dataset
+
+        :param save_dir: path to the dest dir
+        :type save_dir: string
+        :param remove_empty: (optional) If True, remove rows which do not have values in the "Value" field
+        :type remove_empty: bool
+        """
+        if not self._dataset:
+            msg = "Dataset not defined. Please load the dataset or the template dataset in advance."
+            raise ValueError(msg)
+        if save_dir == "":
+            save_dir = self._dataset_path
+        save_dir = Path(save_dir)
+        save_dir.mkdir(parents=True, exist_ok=True)
+
+        for key, value in self._dataset.items():
+            if isinstance(value, dict):
+                file_path = Path(value.get("path"))
+                filename = file_path.name
+                data = value.get("metadata")
+
+                if remove_empty:
+                    data = self._filter(data, filename)
+
+                if isinstance(data, pd.DataFrame):
+                    self._set_version(self._version)
+                    template_dir = self._get_template_dir(self._version)
+
+                    if keep_style:
+                        sf = StyleFrame.read_excel_as_template(str(template_dir / filename), data)
+                        writer = StyleFrame.ExcelWriter(Path.joinpath(save_dir, filename))
+                        sf.to_excel(writer)
+                        writer.save()
+                    else:
+                        data.to_excel(Path.joinpath(save_dir, filename), index=False)
+
+            elif Path(value).is_dir():
+                dir_name = Path(value).name
+                dir_path = Path.joinpath(save_dir, dir_name)
+                copy_tree(str(value), str(dir_path), update=1)
+
+            elif Path(value).is_file():
+                filename = Path(value).name
+                file_path = Path.joinpath(save_dir, filename)
+                try:
+                    shutil.copyfile(value, file_path)
+                except shutil.SameFileError:
+                    # overwrite file by copy, remove then rename
+                    file_path_tmp = str(file_path) + "_tmp"
+                    shutil.copyfile(value, file_path_tmp)
+                    os.remove(file_path)
+                    os.rename(file_path_tmp, file_path)
+
+        for gitkeep_path in save_dir.rglob('.gitkeep'):
+            gitkeep_path.unlink()
+
+    def load_metadata(self, path):
+        """
+        Load & update a single metadata
+
+        :param path: path to the metadata file
+        :type path: string
+        :return: metadata
+        :rtype: Pandas.DataFrame
+        """
+        path = Path(path)
+        try:
+            metadata = pd.read_excel(path)
+        except XLRDError:
+            metadata = pd.read_excel(path, engine='openpyxl')
+
+        filename = path.stem
+        self._dataset[filename] = {
+            "path": path,
+            "metadata": metadata
+        }
+
+        return metadata
+
     # def _filter(self, metadata, filename):
     #     """
     #     Remove column/row if values not set
