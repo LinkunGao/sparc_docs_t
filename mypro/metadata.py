@@ -1,9 +1,9 @@
-"""Bb模块的文档注释"""
+"""cC模块的文档注释"""
 
 
 class Cc(object):
     """
-    Bb类的注释
+    CC类的注释
     """
 
     @staticmethod
@@ -16,14 +16,6 @@ class Cc(object):
         2.0
         """
         return x / y
-
-import pandas as pd
-from pathlib import Path
-from sparc_me.core.utils import remove_spaces_and_lower
-import shutil
-from sparc_me.core.utils import find_col_element
-from datetime import datetime, timezone
-from typing import List
 
 # class Metadata:
 #     def __init__(self, metadata_file, metadata, version, dataset_path):
