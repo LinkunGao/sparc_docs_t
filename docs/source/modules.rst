@@ -6,4 +6,6 @@ SPARC_ME
 
    dataset
    metadata
+   schema
+   utils
 
