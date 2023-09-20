@@ -1,5 +1,5 @@
 metadata module
-=========
+==================
 
 .. automodule:: metadata
    :members:

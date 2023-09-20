@@ -1,7 +1,7 @@
-Subject module
+sample module
 ======================
 
-.. automodule:: subject
+.. automodule:: sample
    :members:
    :undoc-members:
    :show-inheritance:
