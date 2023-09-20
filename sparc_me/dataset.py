@@ -673,7 +673,7 @@ class Dataset(object):
 
         self._update_sub_sam_nums_in_dataset_description(self._dataset_path / 'primary')
 
-    def get_subject(self, subject_sds_id) -> Subject:
+    def get_subject(self, subject_sds_id) :
         """
         Get a subject by subject sds id
 
