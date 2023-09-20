@@ -651,26 +651,26 @@ class Dataset(object):
         else:
             data.to_excel(save_path, index=False)
 
-    """***************************New Add subjects ***************************"""
-
-    def add_subjects(self, subjects):
-
-        """
-        Add Subejct list to dataset. This function will add subjects and samples to metadata,And will move the sample files from origin source path to dataset.primary subject sample folder. It will automatically update manifest and dataset_description metadata files.
-
-        :param subjects: Subject dataset
-        :type subjects: list
-        """
-
-        self.save()
-        if not isinstance(subjects, list):
-            msg = "Please provide a list of subjects"
-            raise ValueError(msg)
-        for subject in subjects:
-            self._subjects[subject.subject_id] = subject
-            subject.move()
-
-        self._update_sub_sam_nums_in_dataset_description(self._dataset_path / 'primary')
+    # """***************************New Add subjects ***************************"""
+    #
+    # def add_subjects(self, subjects):
+    #
+    #     """
+    #     Add Subejct list to dataset. This function will add subjects and samples to metadata,And will move the sample files from origin source path to dataset.primary subject sample folder. It will automatically update manifest and dataset_description metadata files.
+    #
+    #     :param subjects: Subject dataset
+    #     :type subjects: list
+    #     """
+    #
+    #     self.save()
+    #     if not isinstance(subjects, list):
+    #         msg = "Please provide a list of subjects"
+    #         raise ValueError(msg)
+    #     for subject in subjects:
+    #         self._subjects[subject.subject_id] = subject
+    #         subject.move()
+    #
+    #     self._update_sub_sam_nums_in_dataset_description(self._dataset_path / 'primary')
 
     # def get_subject(self, subject_sds_id) -> Subject:
     #     """
