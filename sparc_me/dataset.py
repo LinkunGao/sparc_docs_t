@@ -630,26 +630,26 @@ class Dataset(object):
 
         return metadata
 
-    def _generate_file_from_template(self, save_path, metadata_file, data=pd.DataFrame(), keep_style=False):
-        """Generate file from a template and populate with data if givn
-        TODO: will delete later
-
-        :param save_path: destination to save the generated file
-        :type save_path: string
-        :param metadata_file: SDS metadata_file (Ex: samples, subjects)
-        :type metadata_file: string
-        :param data: pandas dataframe containing data, defaults to pd.DataFrame()
-        :type data: pd.DataFrame, optional
-        """
-
-        if keep_style:
-            self._template_dir = self._get_template_dir(version=self._version)
-            sf = StyleFrame.read_excel_as_template(os.path.join(self._template_dir, f'{metadata_file}.xlsx'), data)
-            writer = StyleFrame.ExcelWriter(save_path)
-            sf.to_excel(writer)
-            writer.save()
-        else:
-            data.to_excel(save_path, index=False)
+    # def _generate_file_from_template(self, save_path, metadata_file, data=pd.DataFrame(), keep_style=False):
+    #     """Generate file from a template and populate with data if givn
+    #     TODO: will delete later
+    #
+    #     :param save_path: destination to save the generated file
+    #     :type save_path: string
+    #     :param metadata_file: SDS metadata_file (Ex: samples, subjects)
+    #     :type metadata_file: string
+    #     :param data: pandas dataframe containing data, defaults to pd.DataFrame()
+    #     :type data: pd.DataFrame, optional
+    #     """
+    #
+    #     if keep_style:
+    #         self._template_dir = self._get_template_dir(version=self._version)
+    #         sf = StyleFrame.read_excel_as_template(os.path.join(self._template_dir, f'{metadata_file}.xlsx'), data)
+    #         writer = StyleFrame.ExcelWriter(save_path)
+    #         sf.to_excel(writer)
+    #         writer.save()
+    #     else:
+    #         data.to_excel(save_path, index=False)
 
     # """***************************New Add subjects ***************************"""
     #
