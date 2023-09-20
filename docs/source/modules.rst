@@ -7,3 +7,4 @@ mypro
    aa
    bb
    metadata
+   subject
