@@ -15,7 +15,9 @@ class Db(object):
         2.0
         """
         return x / y
-class Sample:
+
+class Sample(object):
+
     count = 0
     _dataset_path: Path = Path('./')
     _metadata: Metadata = None
