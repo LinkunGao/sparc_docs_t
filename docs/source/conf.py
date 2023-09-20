@@ -18,7 +18,7 @@ current_script_path = Path(__file__)
 project_root = current_script_path.resolve().parent.parent.parent
 
 sys.path.append(str(project_root))
-sys.path.insert(0, str(project_root / "mypro"))
+sys.path.insert(0, str(project_root / "sparc_me"))
 
 
 

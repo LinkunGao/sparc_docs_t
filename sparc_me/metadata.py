@@ -1,22 +1,5 @@
 """Metadata module documentation"""
 
-
-# class Cc(object):
-#     """
-#     Cc test class
-#     """
-#
-#     @staticmethod
-#     def cc_api(x, y):
-#         """
-#         求商
-#         >>> Cc.cc_api(2, 4)
-#         0.5
-#         >>> Cc.cc_api(4, 2)
-#         2.0
-#         """
-#         return x / y
-
 class Metadata:
     def __init__(self, metadata_file, metadata, version, dataset_path):
         """

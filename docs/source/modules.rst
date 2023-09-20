@@ -4,8 +4,6 @@ SPARC_ME
 .. toctree::
    :maxdepth: 4
 
-   aa
-   bb
+   dataset
    metadata
-   subject
-   sample
+
