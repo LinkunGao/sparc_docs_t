@@ -1,7 +1,7 @@
-aa module
+metadata module
 =========
 
-.. automodule:: aa
+.. automodule:: metadata
    :members:
    :undoc-members:
    :show-inheritance:
