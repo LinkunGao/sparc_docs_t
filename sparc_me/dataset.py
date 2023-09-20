@@ -541,95 +541,95 @@ class Dataset(object):
             excel_row_index = matching_indices[0] + 2
             return self._set_field(metadata_file=metadata_file, row_index=excel_row_index, header=header, value=value)
 
-    # def _append(self, metadata_file, row, check_exist=False, unique_column=None):
-    #     """
-    #     Append a row to a metadata file
-    #
-    #     :param metadata_file: metadata metadata_file
-    #     :type metadata_file: string
-    #     :param row: a row to be appended
-    #     :type row: dic
-    #     :param check_exist: Check if row exist before appending, if exist, update row, defaults to False
-    #     :type check_exist: bool, optional
-    #     :param unique_column: if check_exist is True, provide which column in metadata_file is unique, defaults to None
-    #     :type unique_column: string, optional
-    #     :raises ValueError: _description_
-    #     :return: updated dataset
-    #     :rtype: dict
-    #     """
-    #     if not self._dataset:
-    #         msg = "Dataset not defined. Please load the dataset in advance."
-    #         raise ValueError(msg)
-    #
-    #     # metadata = self._dataset.get(metadata_file).get("metadata")
-    #     current_metadata = self.get_metadata(metadata_file)
-    #     if check_exist:
-    #         # In version 1, the unique column is not the column 0. Hence, unique column must be specified
-    #         if unique_column is None:
-    #             error_msg = "Provide which column in metadata_file is unique. Ex: subject_id"
-    #             raise ValueError(error_msg)
-    #
-    #         try:
-    #             row_index = check_row_exist(current_metadata.data, unique_column, unique_value=row[unique_column])
-    #         except ValueError:
-    #             error_msg = "Row values provided does not contain a unique identifier"
-    #             raise ValueError(error_msg)
-    #     else:
-    #         row_index = -1
-    #
-    #     if row_index == -1:
-    #         # Add row
-    #         row_df = pd.DataFrame([row])
-    #         current_metadata.data = pd.concat([current_metadata.data, row_df], axis=0,
-    #                                           ignore_index=True)  # If new header comes, it will be added as a new column with its value
-    #     else:
-    #         # Append row with additional values
-    #         for key, value in row.items():
-    #             current_metadata.data.loc[row_index, key] = value
-    #
-    #     self._dataset[metadata_file]["metadata"] = current_metadata.data
-    #     return self._dataset
-    #
-    # def update_by_json(self, metadata_file, json_file):
-    #     """
-    #     Given json file, update metadata file
-    #     :param metadata_file: metadata metadata_file/filename
-    #     :type metadata_file: string
-    #     :param json_file: path to metadata file in json
-    #     :type json_file: string
-    #     :return:
-    #     :rtype:
-    #     """
-    #     metadata = self._dataset.get(metadata_file).get("metadata")
-    #
-    #     with open(json_file, "r") as f:
-    #         data = json.load(f)
-    #
-    #     for key, value in data.items():
-    #         if isinstance(value, dict):
-    #             for key_1, value_1 in value.items():
-    #                 if isinstance(value, list):
-    #                     field = "    " + key_1
-    #                     value = str(value_1)
-    #                 else:
-    #                     field = "    " + key_1
-    #                     value = value_1
-    #
-    #                 index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
-    #                 metadata.loc[index, "Value"] = value
-    #
-    #         elif isinstance(value, list):
-    #             field = key
-    #             value = str(value)
-    #             index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
-    #             metadata.loc[index, "Value"] = value
-    #         else:
-    #             field = key
-    #             index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
-    #             metadata.loc[index, "Value"] = value
-    #
-    #     return metadata
-    #
+    def _append(self, metadata_file, row, check_exist=False, unique_column=None):
+        """
+        Append a row to a metadata file
+
+        :param metadata_file: metadata metadata_file
+        :type metadata_file: string
+        :param row: a row to be appended
+        :type row: dic
+        :param check_exist: Check if row exist before appending, if exist, update row, defaults to False
+        :type check_exist: bool, optional
+        :param unique_column: if check_exist is True, provide which column in metadata_file is unique, defaults to None
+        :type unique_column: string, optional
+        :raises ValueError: _description_
+        :return: updated dataset
+        :rtype: dict
+        """
+        if not self._dataset:
+            msg = "Dataset not defined. Please load the dataset in advance."
+            raise ValueError(msg)
+
+        # metadata = self._dataset.get(metadata_file).get("metadata")
+        current_metadata = self.get_metadata(metadata_file)
+        if check_exist:
+            # In version 1, the unique column is not the column 0. Hence, unique column must be specified
+            if unique_column is None:
+                error_msg = "Provide which column in metadata_file is unique. Ex: subject_id"
+                raise ValueError(error_msg)
+
+            try:
+                row_index = check_row_exist(current_metadata.data, unique_column, unique_value=row[unique_column])
+            except ValueError:
+                error_msg = "Row values provided does not contain a unique identifier"
+                raise ValueError(error_msg)
+        else:
+            row_index = -1
+
+        if row_index == -1:
+            # Add row
+            row_df = pd.DataFrame([row])
+            current_metadata.data = pd.concat([current_metadata.data, row_df], axis=0,
+                                              ignore_index=True)  # If new header comes, it will be added as a new column with its value
+        else:
+            # Append row with additional values
+            for key, value in row.items():
+                current_metadata.data.loc[row_index, key] = value
+
+        self._dataset[metadata_file]["metadata"] = current_metadata.data
+        return self._dataset
+
+    def update_by_json(self, metadata_file, json_file):
+        """
+        Given json file, update metadata file
+        :param metadata_file: metadata metadata_file/filename
+        :type metadata_file: string
+        :param json_file: path to metadata file in json
+        :type json_file: string
+        :return:
+        :rtype:
+        """
+        metadata = self._dataset.get(metadata_file).get("metadata")
+
+        with open(json_file, "r") as f:
+            data = json.load(f)
+
+        for key, value in data.items():
+            if isinstance(value, dict):
+                for key_1, value_1 in value.items():
+                    if isinstance(value, list):
+                        field = "    " + key_1
+                        value = str(value_1)
+                    else:
+                        field = "    " + key_1
+                        value = value_1
+
+                    index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
+                    metadata.loc[index, "Value"] = value
+
+            elif isinstance(value, list):
+                field = key
+                value = str(value)
+                index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
+                metadata.loc[index, "Value"] = value
+            else:
+                field = key
+                index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
+                metadata.loc[index, "Value"] = value
+
+        return metadata
+
     # def _generate_file_from_template(self, save_path, metadata_file, data=pd.DataFrame(), keep_style=False):
     #     """Generate file from a template and populate with data if givn
     #     TODO: will delete later
