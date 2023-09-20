@@ -327,180 +327,180 @@ class Dataset(object):
 
         return metadata
 
-    # def _filter(self, metadata, filename):
-    #     """
-    #     Remove column/row if values not set
-    #
-    #     :param metadata: metadata
-    #     :type metadata: Pandas.DataFrame
-    #     :param filename: name of the metadata
-    #     :type filename: string
-    #     :return: updated metadata
-    #     :rtype: Pandas.DataFrame
-    #     """
-    #     if "dataset_description" in filename:
-    #         # For the dataset_description metadata, remove rows which do not have values in the "Value" fields
-    #         metadata = metadata.dropna(subset=["Value"])
-    #
-    #     return metadata
-    #
-    # def list_metadata_files(self, version="2.0.0", print_list=True):
-    #     """
-    #     list all metadata_files based on the metadata files in the template dataset
-    #
-    #     :param version: reference template version
-    #     :type version: string
-    #     :return: all metadata metadata_files
-    #     :rtype: list
-    #     """
-    #     metadata_files = list()
-    #
-    #     self._load_template(version=version)
-    #
-    #     for key, value in self._template.items():
-    #         if isinstance(value, dict):
-    #             file_path = Path(value.get("path"))
-    #             metadata_file = file_path.stem
-    #             metadata_files.append(metadata_file)
-    #
-    #     if print_list:
-    #         print("metadata_files:")
-    #         for metadata_file in metadata_files:
-    #             print(metadata_file)
-    #
-    #     return metadata_files
-    #
-    # def list_elements(self, metadata_file, axis=0, version="2.0.0"):
-    #     """
-    #     List field from a metadata file
-    #
-    #     :param metadata_file: metadata metadata_file
-    #     :type metadata_file: string
-    #     :param axis: If axis=0, column-based. list all column headers. i.e. the first row.
-    #                  If axis=1, row-based. list all row index. i.e. the first column in each row
-    #     :type axis: int
-    #     :param version: reference template version
-    #     :type version: string
-    #     :return: a list of fields
-    #     :rtype: list
-    #     """
-    #     fields = None
-    #     metadata_file = validate_metadata_file(metadata_file, version)
-    #     if metadata_file == "dataset_description":
-    #         axis = 1
-    #
-    #     if version:
-    #         version = self._convert_version_format(version)
-    #         template_dir = self._get_template_dir(version)
-    #
-    #         element_description_file = template_dir / "../schema.xlsx"
-    #
-    #         try:
-    #             element_description = pd.read_excel(element_description_file, sheet_name=metadata_file)
-    #         except XLRDError:
-    #             element_description = pd.read_excel(element_description_file, sheet_name=metadata_file,
-    #                                                 engine='openpyxl')
-    #
-    #         print("metadata_file: " + str(metadata_file))
-    #         for index, row in element_description.iterrows():
-    #             print(str(row["Element"]))
-    #             print("    Required: " + str(row["Required"]))
-    #             print("    Type: " + str(row["Type"]))
-    #             print("    Description: " + str(row["Description"]))
-    #             print("    Example: " + str(row["Example"]))
-    #
-    #         fields = element_description.values.tolist()
-    #         return fields
-    #
-    #     if not self._template:
-    #         self._load_template(version=None)
-    #
-    #     data = self._template.get(metadata_file)
-    #     metadata = data.get("metadata")
-    #     # set the first column as the index column
-    #     metadata = metadata.set_index(list(metadata)[0])
-    #     if axis == 0:
-    #         fields = list(metadata.columns)
-    #     elif axis == 1:
-    #         fields = list(metadata.index)
-    #
-    #     print("Fields:")
-    #     for field in fields:
-    #         print(field)
-    #
-    #     return fields
-    #
-    # def _generate_metadata(self):
-    #     metadata_files = self.list_metadata_files(self._version, print_list=False)
-    #     for metadata_file in metadata_files:
-    #         metadata = self._dataset.get(metadata_file).get("metadata")
-    #         self._metadata[metadata_file] = Metadata(metadata_file, metadata, self._version, self._dataset_path)
-    #         if metadata_file == "subjects":
-    #             Subject._metadata = self._metadata[metadata_file]
-    #         elif metadata_file == 'samples':
-    #             Sample._metadata = self._metadata[metadata_file]
-    #
-    #     Sample._manifest_metadata = self._metadata['manifest']
-    #
-    # def get_metadata(self, metadata_file):
-    #     """
-    #     Get a Metadata object based on the metadata file name
-    #     To edit values for a metadata
-    #
-    #     :param metadata_file: one of string of [code_description,
-    #                                             code_parameters,
-    #                                             dataset_description,
-    #                                             manifest,performances,
-    #                                             resources,samples,
-    #                                             subjects,submission]
-    #     :type  metadata_file: string
-    #     :return: give a metadata editor for a specific metadata
-    #     """
-    #     if not self._dataset:
-    #         msg = "Dataset not defined. Please load the dataset in advance."
-    #         raise ValueError(msg)
-    #
-    #     metadata_file = validate_metadata_file(metadata_file, self._version)
-    #     return self._metadata[metadata_file]
-    #
-    # def _set_field(self, metadata_file, row_index, header, value):
-    #     """
-    #     Set single field by row idx/name and column name (the header)
-    #     TODO: will delete later
-    #
-    #     :param metadata_file: metadata metadata_file
-    #     :type metadata_file: string
-    #     :param row_index: row index in Excel. Excel index starts from 1 where index 1 is the header row. so actual data index starts from 2
-    #     :type row_index: int
-    #     :param header: column name. the header is the first row
-    #     :type header: string
-    #     :param value: field value
-    #     :type value: string
-    #     :return: updated dataset
-    #     :rtype: dict
-    #     """
-    #     if not self._dataset:
-    #         msg = "Dataset not defined. Please load the dataset in advance."
-    #         raise ValueError(msg)
-    #
-    #     metadata = self._dataset.get(metadata_file).get("metadata")
-    #
-    #     if not isinstance(row_index, int):
-    #         msg = "row_index should be 'int'."
-    #         raise ValueError(msg)
-    #
-    #     try:
-    #         # Convert Excel row index to dataframe index: index - 2
-    #         row_index = row_index - 2
-    #         metadata.loc[row_index, header] = value
-    #     except ValueError:
-    #         msg = "Value error. row does not exists."
-    #         raise ValueError(msg)
-    #
-    #     self._dataset[metadata_file]["metadata"] = metadata
-    #
-    #     return self._dataset
-    #
+    def _filter(self, metadata, filename):
+        """
+        Remove column/row if values not set
+
+        :param metadata: metadata
+        :type metadata: Pandas.DataFrame
+        :param filename: name of the metadata
+        :type filename: string
+        :return: updated metadata
+        :rtype: Pandas.DataFrame
+        """
+        if "dataset_description" in filename:
+            # For the dataset_description metadata, remove rows which do not have values in the "Value" fields
+            metadata = metadata.dropna(subset=["Value"])
+
+        return metadata
+
+    def list_metadata_files(self, version="2.0.0", print_list=True):
+        """
+        list all metadata_files based on the metadata files in the template dataset
+
+        :param version: reference template version
+        :type version: string
+        :return: all metadata metadata_files
+        :rtype: list
+        """
+        metadata_files = list()
+
+        self._load_template(version=version)
+
+        for key, value in self._template.items():
+            if isinstance(value, dict):
+                file_path = Path(value.get("path"))
+                metadata_file = file_path.stem
+                metadata_files.append(metadata_file)
+
+        if print_list:
+            print("metadata_files:")
+            for metadata_file in metadata_files:
+                print(metadata_file)
+
+        return metadata_files
+
+    def list_elements(self, metadata_file, axis=0, version="2.0.0"):
+        """
+        List field from a metadata file
+
+        :param metadata_file: metadata metadata_file
+        :type metadata_file: string
+        :param axis: If axis=0, column-based. list all column headers. i.e. the first row.
+                     If axis=1, row-based. list all row index. i.e. the first column in each row
+        :type axis: int
+        :param version: reference template version
+        :type version: string
+        :return: a list of fields
+        :rtype: list
+        """
+        fields = None
+        metadata_file = validate_metadata_file(metadata_file, version)
+        if metadata_file == "dataset_description":
+            axis = 1
+
+        if version:
+            version = self._convert_version_format(version)
+            template_dir = self._get_template_dir(version)
+
+            element_description_file = template_dir / "../schema.xlsx"
+
+            try:
+                element_description = pd.read_excel(element_description_file, sheet_name=metadata_file)
+            except XLRDError:
+                element_description = pd.read_excel(element_description_file, sheet_name=metadata_file,
+                                                    engine='openpyxl')
+
+            print("metadata_file: " + str(metadata_file))
+            for index, row in element_description.iterrows():
+                print(str(row["Element"]))
+                print("    Required: " + str(row["Required"]))
+                print("    Type: " + str(row["Type"]))
+                print("    Description: " + str(row["Description"]))
+                print("    Example: " + str(row["Example"]))
+
+            fields = element_description.values.tolist()
+            return fields
+
+        if not self._template:
+            self._load_template(version=None)
+
+        data = self._template.get(metadata_file)
+        metadata = data.get("metadata")
+        # set the first column as the index column
+        metadata = metadata.set_index(list(metadata)[0])
+        if axis == 0:
+            fields = list(metadata.columns)
+        elif axis == 1:
+            fields = list(metadata.index)
+
+        print("Fields:")
+        for field in fields:
+            print(field)
+
+        return fields
+
+    def _generate_metadata(self):
+        metadata_files = self.list_metadata_files(self._version, print_list=False)
+        for metadata_file in metadata_files:
+            metadata = self._dataset.get(metadata_file).get("metadata")
+            self._metadata[metadata_file] = Metadata(metadata_file, metadata, self._version, self._dataset_path)
+            if metadata_file == "subjects":
+                Subject._metadata = self._metadata[metadata_file]
+            elif metadata_file == 'samples':
+                Sample._metadata = self._metadata[metadata_file]
+
+        Sample._manifest_metadata = self._metadata['manifest']
+
+    def get_metadata(self, metadata_file):
+        """
+        Get a Metadata object based on the metadata file name
+        To edit values for a metadata
+
+        :param metadata_file: one of string of [code_description,
+                                                code_parameters,
+                                                dataset_description,
+                                                manifest,performances,
+                                                resources,samples,
+                                                subjects,submission]
+        :type  metadata_file: string
+        :return: give a metadata editor for a specific metadata
+        """
+        if not self._dataset:
+            msg = "Dataset not defined. Please load the dataset in advance."
+            raise ValueError(msg)
+
+        metadata_file = validate_metadata_file(metadata_file, self._version)
+        return self._metadata[metadata_file]
+
+    def _set_field(self, metadata_file, row_index, header, value):
+        """
+        Set single field by row idx/name and column name (the header)
+        TODO: will delete later
+
+        :param metadata_file: metadata metadata_file
+        :type metadata_file: string
+        :param row_index: row index in Excel. Excel index starts from 1 where index 1 is the header row. so actual data index starts from 2
+        :type row_index: int
+        :param header: column name. the header is the first row
+        :type header: string
+        :param value: field value
+        :type value: string
+        :return: updated dataset
+        :rtype: dict
+        """
+        if not self._dataset:
+            msg = "Dataset not defined. Please load the dataset in advance."
+            raise ValueError(msg)
+
+        metadata = self._dataset.get(metadata_file).get("metadata")
+
+        if not isinstance(row_index, int):
+            msg = "row_index should be 'int'."
+            raise ValueError(msg)
+
+        try:
+            # Convert Excel row index to dataframe index: index - 2
+            row_index = row_index - 2
+            metadata.loc[row_index, header] = value
+        except ValueError:
+            msg = "Value error. row does not exists."
+            raise ValueError(msg)
+
+        self._dataset[metadata_file]["metadata"] = metadata
+
+        return self._dataset
+
     # def _set_field_using_row_name(self, metadata_file, row_name, header, value):
     #     """
     #     Set single cell. The row is identified by the given unique name and column is identified by the header.
