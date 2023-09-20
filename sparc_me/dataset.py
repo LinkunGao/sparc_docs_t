@@ -541,357 +541,357 @@ class Dataset(object):
             excel_row_index = matching_indices[0] + 2
             return self._set_field(metadata_file=metadata_file, row_index=excel_row_index, header=header, value=value)
 
-    def _append(self, metadata_file, row, check_exist=False, unique_column=None):
-        """
-        Append a row to a metadata file
-
-        :param metadata_file: metadata metadata_file
-        :type metadata_file: string
-        :param row: a row to be appended
-        :type row: dic
-        :param check_exist: Check if row exist before appending, if exist, update row, defaults to False
-        :type check_exist: bool, optional
-        :param unique_column: if check_exist is True, provide which column in metadata_file is unique, defaults to None
-        :type unique_column: string, optional
-        :raises ValueError: _description_
-        :return: updated dataset
-        :rtype: dict
-        """
-        if not self._dataset:
-            msg = "Dataset not defined. Please load the dataset in advance."
-            raise ValueError(msg)
-
-        # metadata = self._dataset.get(metadata_file).get("metadata")
-        current_metadata = self.get_metadata(metadata_file)
-        if check_exist:
-            # In version 1, the unique column is not the column 0. Hence, unique column must be specified
-            if unique_column is None:
-                error_msg = "Provide which column in metadata_file is unique. Ex: subject_id"
-                raise ValueError(error_msg)
-
-            try:
-                row_index = check_row_exist(current_metadata.data, unique_column, unique_value=row[unique_column])
-            except ValueError:
-                error_msg = "Row values provided does not contain a unique identifier"
-                raise ValueError(error_msg)
-        else:
-            row_index = -1
-
-        if row_index == -1:
-            # Add row
-            row_df = pd.DataFrame([row])
-            current_metadata.data = pd.concat([current_metadata.data, row_df], axis=0,
-                                              ignore_index=True)  # If new header comes, it will be added as a new column with its value
-        else:
-            # Append row with additional values
-            for key, value in row.items():
-                current_metadata.data.loc[row_index, key] = value
-
-        self._dataset[metadata_file]["metadata"] = current_metadata.data
-        return self._dataset
-
-    def update_by_json(self, metadata_file, json_file):
-        """
-        Given json file, update metadata file
-        :param metadata_file: metadata metadata_file/filename
-        :type metadata_file: string
-        :param json_file: path to metadata file in json
-        :type json_file: string
-        :return:
-        :rtype:
-        """
-        metadata = self._dataset.get(metadata_file).get("metadata")
-
-        with open(json_file, "r") as f:
-            data = json.load(f)
-
-        for key, value in data.items():
-            if isinstance(value, dict):
-                for key_1, value_1 in value.items():
-                    if isinstance(value, list):
-                        field = "    " + key_1
-                        value = str(value_1)
-                    else:
-                        field = "    " + key_1
-                        value = value_1
-
-                    index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
-                    metadata.loc[index, "Value"] = value
-
-            elif isinstance(value, list):
-                field = key
-                value = str(value)
-                index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
-                metadata.loc[index, "Value"] = value
-            else:
-                field = key
-                index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
-                metadata.loc[index, "Value"] = value
-
-        return metadata
-
-    def _generate_file_from_template(self, save_path, metadata_file, data=pd.DataFrame(), keep_style=False):
-        """Generate file from a template and populate with data if givn
-        TODO: will delete later
-
-        :param save_path: destination to save the generated file
-        :type save_path: string
-        :param metadata_file: SDS metadata_file (Ex: samples, subjects)
-        :type metadata_file: string
-        :param data: pandas dataframe containing data, defaults to pd.DataFrame()
-        :type data: pd.DataFrame, optional
-        """
-
-        if keep_style:
-            self._template_dir = self._get_template_dir(version=self._version)
-            sf = StyleFrame.read_excel_as_template(os.path.join(self._template_dir, f'{metadata_file}.xlsx'), data)
-            writer = StyleFrame.ExcelWriter(save_path)
-            sf.to_excel(writer)
-            writer.save()
-        else:
-            data.to_excel(save_path, index=False)
-
-    """***************************New Add subjects ***************************"""
-
-    def add_subjects(self, subjects):
-
-        """
-        Add Subejct list to dataset.
-        This function will add subjects and samples to metadata,
-        And will move the sample files from origin source path to dataset
-        primary subject sample folder.
-        It will automatically update manifest and dataset_description metadata files.
-
-        :param subjects: Subject dataset
-        :type subjects: list
-        """
-
-        self.save()
-        if not isinstance(subjects, list):
-            msg = "Please provide a list of subjects"
-            raise ValueError(msg)
-        for subject in subjects:
-            self._subjects[subject.subject_id] = subject
-            subject.move()
-
-        self._update_sub_sam_nums_in_dataset_description(self._dataset_path / 'primary')
-
-    def get_subject(self, subject_sds_id) -> Subject:
-        """
-        Get a subject by subject sds id
-
-        :param subject_sds_id: subject sds id
-        :type subject_sds_id: str
-        :return: Subject
-        """
-        if not isinstance(subject_sds_id, str):
-            msg = f"Subject not found, please provide a string subject_sds_id!, you subject_sds_id type is {type(subject_sds_id)}"
-            raise ValueError(msg)
-
-        try:
-            subject = self._subjects.get(subject_sds_id)
-            return subject
-        except:
-            msg = f"Subject not found with {subject_sds_id}! Please check your subject_sds_id in subject metadata file"
-            raise ValueError(msg)
-
-    def add_derivative_data(self, source_path, subject, sample, copy=True, overwrite=True):
-        """Add raw data of a sample to correct SDS location and update relavent metadata files.
-        Requires you to already have the folder structure inplace.
-
-        :param source_path: original location of raw data
-        :type source_path: string
-        :param subject: subject id
-        :type subject: string
-        :param sample: sample id
-        :type sample: string
-        :param sds_parent_dir: path to existing sds dataset parent
-        :type sds_parent_dir: string, optional
-        :param copy: if True, source directory data will not be deleted after copying, defaults to True
-        :type copy: bool, optional
-        :param overwrite: if True, any data in the destination folder will be overwritten, defaults to False
-        :type overwrite: bool, optional
-        :raises NotADirectoryError: if the derivative in sds_parent_dir is not a folder, this wil be raised.
-        """
-
-        derivative_folder = os.path.join(str(self._dataset_path), 'derivative')
-
-        # Check if sds_parent_directory contains the derivative folder. If not create it.
-        if os.path.exists(derivative_folder):
-            if not os.path.isdir(derivative_folder):
-                raise NotADirectoryError(f'{derivative_folder} is not a directory')
-        else:
-            os.mkdir(derivative_folder)
-
-        self._add_sample_data(source_path, self._dataset_path, subject, sample, data_type="derivative", copy=copy,
-                              overwrite=overwrite)
-
-    def _add_element(self, metadata_file, element):
-        """
-        May need to delete
-
-        :param metadata_file:
-        :param element:
-        :return:
-        """
-        metadata = self._dataset.get(metadata_file).get("metadata")
-        if metadata_file in self._column_based:
-            row_pd = pd.DataFrame([{"Metadata element": element}])
-            metadata = pd.concat([metadata, row_pd], axis=0, ignore_index=True)
-        else:
-            metadata[element] = None
-
-        self._dataset[metadata_file]["metadata"] = metadata
-
-    def add_thumbnail(self, source_path, copy=True, overwrite=True):
-
-        file_source_path = Path(source_path)
-        if not file_source_path.is_file():
-            msg = f"source_path should be the thumbnail file's path"
-            raise ValueError(msg)
-        else:
-            filename = file_source_path.name
-            destination_path = self._dataset_path.joinpath('docs', filename)
-            if destination_path.exists():
-                if overwrite:
-                    self._delete_data(destination_path)
-                else:
-                    msg = f"The thumbnail file has already in primary folder"
-                    raise FileExistsError(msg)
-
-            self._move_single_file(file_path=source_path, destination_path=destination_path, fname=filename, copy=copy)
-            description = f"This is a thumbnail file"
-            self._modify_manifest(fname=filename, manifest_folder_path=str(self._dataset_path),
-                                  destination_path=str(destination_path.parent), description=description)
-
-
-    def _add_sample_data(self, source_path, dataset_path, subject, sample, data_type="primary", copy=True,
-                         overwrite=True):
-        """Copy or move data from source folder to destination folder
-
-        :param source_path: path to the original data
-        :type source_path: string
-        :param destination_path_list: folder path in a list[root, data_pype, subject, sample] to be copied into
-        :type destination_path_list: list
-        :param copy: if True, source directory data will not be deleted after copying, defaults to True
-        :type copy: bool, optional
-        :param overwrite: if True, any data in the destination folder will be overwritten, defaults to False
-        :type overwrite: bool, optional
-        :raises FileExistsError: if the destination folder contains data and overwritten is set to False, this wil be raised.
-        """
-        destination_path = os.path.join(str(dataset_path), data_type, subject, sample)
-        # If overwrite is True, remove existing sample
-        if os.path.exists(destination_path):
-            if os.path.isdir(source_path):
-                if overwrite:
-                    shutil.rmtree(destination_path)
-                    os.makedirs(destination_path)
-                else:
-                    raise FileExistsError(
-                        "Destination file already exist. Indicate overwrite argument as 'True' to overwrite the existing")
-            else:
-                if overwrite:
-                    file_path = Path(destination_path).joinpath(Path(source_path).name)
-                    self._delete_data(file_path)
-                else:
-                    raise FileExistsError(
-                        "Destination file already exist. Indicate overwrite argument as 'True' to overwrite the existing")
-        else:
-            # Create destination folder
-            os.makedirs(destination_path)
-
-        description = f"File of subject {subject} sample {sample}"
-        if os.path.isdir(source_path):
-            for fname in os.listdir(source_path):
-                file_path = os.path.join(source_path, fname)
-                if os.path.isdir(file_path):
-                    # Warn user if a subdirectory exist in the input_path
-                    print(
-                        f"Warning: Input directory consist of subdirectory {source_path}. It will be avoided during copying")
-                    return
-                else:
-                    self._move_single_file(file_path=file_path, destination_path=destination_path,
-                                           fname=fname, copy=copy)
-                    self._modify_manifest(fname=fname, manifest_folder_path=dataset_path,
-                                          destination_path=destination_path,
-                                          description=description)
-        else:
-            fname = os.path.basename(source_path)
-            self._move_single_file(file_path=source_path, destination_path=destination_path,
-                                   fname=fname, copy=copy)
-            self._modify_manifest(fname=fname, manifest_folder_path=dataset_path, destination_path=destination_path,
-                                  description=description)
-
-    def _move_single_file(self, file_path, destination_path, fname, copy):
-        if copy:
-            # Copy data
-            shutil.copy2(file_path, destination_path)
-        else:
-            # Move data
-            shutil.move(file_path, os.path.join(destination_path, fname))
-
-    def _modify_manifest(self, fname, manifest_folder_path, destination_path, description=""):
-        # Check if manifest exist
-        # If can be "xlsx", "csv" or "json"
-        files = os.listdir(manifest_folder_path)
-        manifest_file_path = [f for f in files if "manifest" in f]
-        # Case 1: manifest file exists
-        if len(manifest_file_path) != 0:
-            manifest_file_path = os.path.join(manifest_folder_path, manifest_file_path[0])
-            # Check the extension and read file accordingly
-            extension = os.path.splitext(manifest_file_path)[-1].lower()
-            if extension == ".xlsx":
-                df = pd.read_excel(manifest_file_path)
-            elif extension == ".csv":
-                df = pd.read_csv(manifest_file_path)
-            elif extension == ".json":
-                # TODO: Check what structure a manifest json is in
-                # Below code assumes json structure is like
-                # '{"row 1":{"col 1":"a","col 2":"b"},"row 2":{"col 1":"c","col 2":"d"}}'
-                df = pd.read_json(manifest_file_path, orient="index")
-            else:
-                raise ValueError(f"Unauthorized manifest file extension: {extension}")
-        # Case 2: create manifest file
-        else:
-            # Default extension to xlsx
-            extension = ".xlsx"
-            # Creat manifest file path
-            manifest_file_path = os.path.join(manifest_folder_path, "manifest.xlsx")
-            df = pd.DataFrame(columns=['filename', 'description', 'timestamp', 'file type'])
-
-        file_path = Path(
-            str(os.path.join(destination_path, fname)).replace(str(manifest_folder_path), '')[1:]).as_posix()
-
-        row = {
-            'filename': file_path,
-            'timestamp': datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
-            'description': description,
-            'file type': os.path.splitext(fname)[-1].lower()[1:]
-        }
-
-        exsiting_row = df['filename'] == row['filename']
-        if exsiting_row.any():
-            df.loc[exsiting_row, 'timestamp'] = row['timestamp']
-        else:
-            row_pd = pd.DataFrame([row])
-            df = pd.concat([df, row_pd], axis=0, ignore_index=True)
-
-        # update dataset metadata
-        self._update_dataset_by_df(df, "manifest")
-
-        # Save editted manifest file
-        if extension == ".xlsx":
-            df.to_excel(manifest_file_path, index=False)
-        elif extension == ".csv":
-            df = pd.to_csv(manifest_file_path, index=False)
-        elif extension == ".json":
-            df = pd.read_json(manifest_file_path, orient="index")
-        return
-
-    def _update_dataset_by_df(self, df, metadata_file):
-        manifest_metadata = self._metadata[metadata_file]
-        manifest_metadata.data = df
-        self._dataset[metadata_file]["metadata"] = manifest_metadata.data
+    # def _append(self, metadata_file, row, check_exist=False, unique_column=None):
+    #     """
+    #     Append a row to a metadata file
+    #
+    #     :param metadata_file: metadata metadata_file
+    #     :type metadata_file: string
+    #     :param row: a row to be appended
+    #     :type row: dic
+    #     :param check_exist: Check if row exist before appending, if exist, update row, defaults to False
+    #     :type check_exist: bool, optional
+    #     :param unique_column: if check_exist is True, provide which column in metadata_file is unique, defaults to None
+    #     :type unique_column: string, optional
+    #     :raises ValueError: _description_
+    #     :return: updated dataset
+    #     :rtype: dict
+    #     """
+    #     if not self._dataset:
+    #         msg = "Dataset not defined. Please load the dataset in advance."
+    #         raise ValueError(msg)
+    #
+    #     # metadata = self._dataset.get(metadata_file).get("metadata")
+    #     current_metadata = self.get_metadata(metadata_file)
+    #     if check_exist:
+    #         # In version 1, the unique column is not the column 0. Hence, unique column must be specified
+    #         if unique_column is None:
+    #             error_msg = "Provide which column in metadata_file is unique. Ex: subject_id"
+    #             raise ValueError(error_msg)
+    #
+    #         try:
+    #             row_index = check_row_exist(current_metadata.data, unique_column, unique_value=row[unique_column])
+    #         except ValueError:
+    #             error_msg = "Row values provided does not contain a unique identifier"
+    #             raise ValueError(error_msg)
+    #     else:
+    #         row_index = -1
+    #
+    #     if row_index == -1:
+    #         # Add row
+    #         row_df = pd.DataFrame([row])
+    #         current_metadata.data = pd.concat([current_metadata.data, row_df], axis=0,
+    #                                           ignore_index=True)  # If new header comes, it will be added as a new column with its value
+    #     else:
+    #         # Append row with additional values
+    #         for key, value in row.items():
+    #             current_metadata.data.loc[row_index, key] = value
+    #
+    #     self._dataset[metadata_file]["metadata"] = current_metadata.data
+    #     return self._dataset
+    #
+    # def update_by_json(self, metadata_file, json_file):
+    #     """
+    #     Given json file, update metadata file
+    #     :param metadata_file: metadata metadata_file/filename
+    #     :type metadata_file: string
+    #     :param json_file: path to metadata file in json
+    #     :type json_file: string
+    #     :return:
+    #     :rtype:
+    #     """
+    #     metadata = self._dataset.get(metadata_file).get("metadata")
+    #
+    #     with open(json_file, "r") as f:
+    #         data = json.load(f)
+    #
+    #     for key, value in data.items():
+    #         if isinstance(value, dict):
+    #             for key_1, value_1 in value.items():
+    #                 if isinstance(value, list):
+    #                     field = "    " + key_1
+    #                     value = str(value_1)
+    #                 else:
+    #                     field = "    " + key_1
+    #                     value = value_1
+    #
+    #                 index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
+    #                 metadata.loc[index, "Value"] = value
+    #
+    #         elif isinstance(value, list):
+    #             field = key
+    #             value = str(value)
+    #             index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
+    #             metadata.loc[index, "Value"] = value
+    #         else:
+    #             field = key
+    #             index = metadata.index[metadata['Metadata element'] == field].tolist()[0]
+    #             metadata.loc[index, "Value"] = value
+    #
+    #     return metadata
+    #
+    # def _generate_file_from_template(self, save_path, metadata_file, data=pd.DataFrame(), keep_style=False):
+    #     """Generate file from a template and populate with data if givn
+    #     TODO: will delete later
+    #
+    #     :param save_path: destination to save the generated file
+    #     :type save_path: string
+    #     :param metadata_file: SDS metadata_file (Ex: samples, subjects)
+    #     :type metadata_file: string
+    #     :param data: pandas dataframe containing data, defaults to pd.DataFrame()
+    #     :type data: pd.DataFrame, optional
+    #     """
+    #
+    #     if keep_style:
+    #         self._template_dir = self._get_template_dir(version=self._version)
+    #         sf = StyleFrame.read_excel_as_template(os.path.join(self._template_dir, f'{metadata_file}.xlsx'), data)
+    #         writer = StyleFrame.ExcelWriter(save_path)
+    #         sf.to_excel(writer)
+    #         writer.save()
+    #     else:
+    #         data.to_excel(save_path, index=False)
+    #
+    # """***************************New Add subjects ***************************"""
+    #
+    # def add_subjects(self, subjects):
+    #
+    #     """
+    #     Add Subejct list to dataset.
+    #     This function will add subjects and samples to metadata,
+    #     And will move the sample files from origin source path to dataset
+    #     primary subject sample folder.
+    #     It will automatically update manifest and dataset_description metadata files.
+    #
+    #     :param subjects: Subject dataset
+    #     :type subjects: list
+    #     """
+    #
+    #     self.save()
+    #     if not isinstance(subjects, list):
+    #         msg = "Please provide a list of subjects"
+    #         raise ValueError(msg)
+    #     for subject in subjects:
+    #         self._subjects[subject.subject_id] = subject
+    #         subject.move()
+    #
+    #     self._update_sub_sam_nums_in_dataset_description(self._dataset_path / 'primary')
+    #
+    # def get_subject(self, subject_sds_id) -> Subject:
+    #     """
+    #     Get a subject by subject sds id
+    #
+    #     :param subject_sds_id: subject sds id
+    #     :type subject_sds_id: str
+    #     :return: Subject
+    #     """
+    #     if not isinstance(subject_sds_id, str):
+    #         msg = f"Subject not found, please provide a string subject_sds_id!, you subject_sds_id type is {type(subject_sds_id)}"
+    #         raise ValueError(msg)
+    #
+    #     try:
+    #         subject = self._subjects.get(subject_sds_id)
+    #         return subject
+    #     except:
+    #         msg = f"Subject not found with {subject_sds_id}! Please check your subject_sds_id in subject metadata file"
+    #         raise ValueError(msg)
+    #
+    # def add_derivative_data(self, source_path, subject, sample, copy=True, overwrite=True):
+    #     """Add raw data of a sample to correct SDS location and update relavent metadata files.
+    #     Requires you to already have the folder structure inplace.
+    #
+    #     :param source_path: original location of raw data
+    #     :type source_path: string
+    #     :param subject: subject id
+    #     :type subject: string
+    #     :param sample: sample id
+    #     :type sample: string
+    #     :param sds_parent_dir: path to existing sds dataset parent
+    #     :type sds_parent_dir: string, optional
+    #     :param copy: if True, source directory data will not be deleted after copying, defaults to True
+    #     :type copy: bool, optional
+    #     :param overwrite: if True, any data in the destination folder will be overwritten, defaults to False
+    #     :type overwrite: bool, optional
+    #     :raises NotADirectoryError: if the derivative in sds_parent_dir is not a folder, this wil be raised.
+    #     """
+    #
+    #     derivative_folder = os.path.join(str(self._dataset_path), 'derivative')
+    #
+    #     # Check if sds_parent_directory contains the derivative folder. If not create it.
+    #     if os.path.exists(derivative_folder):
+    #         if not os.path.isdir(derivative_folder):
+    #             raise NotADirectoryError(f'{derivative_folder} is not a directory')
+    #     else:
+    #         os.mkdir(derivative_folder)
+    #
+    #     self._add_sample_data(source_path, self._dataset_path, subject, sample, data_type="derivative", copy=copy,
+    #                           overwrite=overwrite)
+    #
+    # def _add_element(self, metadata_file, element):
+    #     """
+    #     May need to delete
+    #
+    #     :param metadata_file:
+    #     :param element:
+    #     :return:
+    #     """
+    #     metadata = self._dataset.get(metadata_file).get("metadata")
+    #     if metadata_file in self._column_based:
+    #         row_pd = pd.DataFrame([{"Metadata element": element}])
+    #         metadata = pd.concat([metadata, row_pd], axis=0, ignore_index=True)
+    #     else:
+    #         metadata[element] = None
+    #
+    #     self._dataset[metadata_file]["metadata"] = metadata
+    #
+    # def add_thumbnail(self, source_path, copy=True, overwrite=True):
+    #
+    #     file_source_path = Path(source_path)
+    #     if not file_source_path.is_file():
+    #         msg = f"source_path should be the thumbnail file's path"
+    #         raise ValueError(msg)
+    #     else:
+    #         filename = file_source_path.name
+    #         destination_path = self._dataset_path.joinpath('docs', filename)
+    #         if destination_path.exists():
+    #             if overwrite:
+    #                 self._delete_data(destination_path)
+    #             else:
+    #                 msg = f"The thumbnail file has already in primary folder"
+    #                 raise FileExistsError(msg)
+    #
+    #         self._move_single_file(file_path=source_path, destination_path=destination_path, fname=filename, copy=copy)
+    #         description = f"This is a thumbnail file"
+    #         self._modify_manifest(fname=filename, manifest_folder_path=str(self._dataset_path),
+    #                               destination_path=str(destination_path.parent), description=description)
+    #
+    #
+    # def _add_sample_data(self, source_path, dataset_path, subject, sample, data_type="primary", copy=True,
+    #                      overwrite=True):
+    #     """Copy or move data from source folder to destination folder
+    #
+    #     :param source_path: path to the original data
+    #     :type source_path: string
+    #     :param destination_path_list: folder path in a list[root, data_pype, subject, sample] to be copied into
+    #     :type destination_path_list: list
+    #     :param copy: if True, source directory data will not be deleted after copying, defaults to True
+    #     :type copy: bool, optional
+    #     :param overwrite: if True, any data in the destination folder will be overwritten, defaults to False
+    #     :type overwrite: bool, optional
+    #     :raises FileExistsError: if the destination folder contains data and overwritten is set to False, this wil be raised.
+    #     """
+    #     destination_path = os.path.join(str(dataset_path), data_type, subject, sample)
+    #     # If overwrite is True, remove existing sample
+    #     if os.path.exists(destination_path):
+    #         if os.path.isdir(source_path):
+    #             if overwrite:
+    #                 shutil.rmtree(destination_path)
+    #                 os.makedirs(destination_path)
+    #             else:
+    #                 raise FileExistsError(
+    #                     "Destination file already exist. Indicate overwrite argument as 'True' to overwrite the existing")
+    #         else:
+    #             if overwrite:
+    #                 file_path = Path(destination_path).joinpath(Path(source_path).name)
+    #                 self._delete_data(file_path)
+    #             else:
+    #                 raise FileExistsError(
+    #                     "Destination file already exist. Indicate overwrite argument as 'True' to overwrite the existing")
+    #     else:
+    #         # Create destination folder
+    #         os.makedirs(destination_path)
+    #
+    #     description = f"File of subject {subject} sample {sample}"
+    #     if os.path.isdir(source_path):
+    #         for fname in os.listdir(source_path):
+    #             file_path = os.path.join(source_path, fname)
+    #             if os.path.isdir(file_path):
+    #                 # Warn user if a subdirectory exist in the input_path
+    #                 print(
+    #                     f"Warning: Input directory consist of subdirectory {source_path}. It will be avoided during copying")
+    #                 return
+    #             else:
+    #                 self._move_single_file(file_path=file_path, destination_path=destination_path,
+    #                                        fname=fname, copy=copy)
+    #                 self._modify_manifest(fname=fname, manifest_folder_path=dataset_path,
+    #                                       destination_path=destination_path,
+    #                                       description=description)
+    #     else:
+    #         fname = os.path.basename(source_path)
+    #         self._move_single_file(file_path=source_path, destination_path=destination_path,
+    #                                fname=fname, copy=copy)
+    #         self._modify_manifest(fname=fname, manifest_folder_path=dataset_path, destination_path=destination_path,
+    #                               description=description)
+    #
+    # def _move_single_file(self, file_path, destination_path, fname, copy):
+    #     if copy:
+    #         # Copy data
+    #         shutil.copy2(file_path, destination_path)
+    #     else:
+    #         # Move data
+    #         shutil.move(file_path, os.path.join(destination_path, fname))
+    #
+    # def _modify_manifest(self, fname, manifest_folder_path, destination_path, description=""):
+    #     # Check if manifest exist
+    #     # If can be "xlsx", "csv" or "json"
+    #     files = os.listdir(manifest_folder_path)
+    #     manifest_file_path = [f for f in files if "manifest" in f]
+    #     # Case 1: manifest file exists
+    #     if len(manifest_file_path) != 0:
+    #         manifest_file_path = os.path.join(manifest_folder_path, manifest_file_path[0])
+    #         # Check the extension and read file accordingly
+    #         extension = os.path.splitext(manifest_file_path)[-1].lower()
+    #         if extension == ".xlsx":
+    #             df = pd.read_excel(manifest_file_path)
+    #         elif extension == ".csv":
+    #             df = pd.read_csv(manifest_file_path)
+    #         elif extension == ".json":
+    #             # TODO: Check what structure a manifest json is in
+    #             # Below code assumes json structure is like
+    #             # '{"row 1":{"col 1":"a","col 2":"b"},"row 2":{"col 1":"c","col 2":"d"}}'
+    #             df = pd.read_json(manifest_file_path, orient="index")
+    #         else:
+    #             raise ValueError(f"Unauthorized manifest file extension: {extension}")
+    #     # Case 2: create manifest file
+    #     else:
+    #         # Default extension to xlsx
+    #         extension = ".xlsx"
+    #         # Creat manifest file path
+    #         manifest_file_path = os.path.join(manifest_folder_path, "manifest.xlsx")
+    #         df = pd.DataFrame(columns=['filename', 'description', 'timestamp', 'file type'])
+    #
+    #     file_path = Path(
+    #         str(os.path.join(destination_path, fname)).replace(str(manifest_folder_path), '')[1:]).as_posix()
+    #
+    #     row = {
+    #         'filename': file_path,
+    #         'timestamp': datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
+    #         'description': description,
+    #         'file type': os.path.splitext(fname)[-1].lower()[1:]
+    #     }
+    #
+    #     exsiting_row = df['filename'] == row['filename']
+    #     if exsiting_row.any():
+    #         df.loc[exsiting_row, 'timestamp'] = row['timestamp']
+    #     else:
+    #         row_pd = pd.DataFrame([row])
+    #         df = pd.concat([df, row_pd], axis=0, ignore_index=True)
+    #
+    #     # update dataset metadata
+    #     self._update_dataset_by_df(df, "manifest")
+    #
+    #     # Save editted manifest file
+    #     if extension == ".xlsx":
+    #         df.to_excel(manifest_file_path, index=False)
+    #     elif extension == ".csv":
+    #         df = pd.to_csv(manifest_file_path, index=False)
+    #     elif extension == ".json":
+    #         df = pd.read_json(manifest_file_path, orient="index")
+    #     return
+    #
+    # def _update_dataset_by_df(self, df, metadata_file):
+    #     manifest_metadata = self._metadata[metadata_file]
+    #     manifest_metadata.data = df
+    #     self._dataset[metadata_file]["metadata"] = manifest_metadata.data
     #
     # """************************************ Delete Data Functions ************************************"""
     #
